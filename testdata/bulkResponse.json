@@ -1,0 +1,68 @@
+{
+  "errors": true,
+  "took": 1370812445,
+  "items": [
+    {
+      "index": {
+        "_index": "user_test8",
+        "_id": "new_doc",
+        "_version": 2,
+        "result": "updated",
+        "_shards": {
+          "total": 2,
+          "successful": 2,
+          "failed": 0
+        },
+        "_seq_no": 1057934,
+        "_primary_term": 1,
+        "status": 200
+      }
+    },
+    {
+      "delete": {
+        "_index": "user_test8",
+        "_id": "616675c55fbaed0550a5befe",
+        "_version": 1,
+        "result": "not_found",
+        "_shards": {
+          "total": 2,
+          "successful": 2,
+          "failed": 0
+        },
+        "_seq_no": 1057935,
+        "_primary_term": 1,
+        "status": 404
+      }
+    },
+    {
+      "create": {
+        "_index": "user_test8",
+        "_id": "another_new_doc",
+        "status": 409,
+        "error": {
+          "type": "version_conflict_engine_exception",
+          "reason": "[another_new_doc]: version conflict, document already exists (current version [1])",
+          "index_uuid": "0gxe6S-_QjqmVk-EJtoSJw",
+          "shard": "0",
+          "index": "user_test8"
+        }
+      }
+    },
+    {
+      "update": {
+        "_index": "user_test8",
+        "_id": "616675c55fbaed0550a5bf01",
+        "_version": 2,
+        "result": "noop",
+        "_shards": {
+          "total": 2,
+          "successful": 2,
+          "failed": 0
+        },
+        "_seq_no": 1057933,
+        "_primary_term": 1,
+        "status": 200
+      }
+    }
+  ]
+}

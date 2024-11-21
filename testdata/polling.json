@@ -1,0 +1,22 @@
+[
+    {
+        "id": 3,
+        "created_at": "2024-11-22T23:22:47.835Z",
+        "updated_at": "2024-11-22T23:22:47.853Z",
+        "filename": "Invoice - Invoice (2).csv",
+        "extension": "csv",
+        "byte_size": 562,
+        "key": "ee17cjocidbmb97shi6bzyf7mhh4",
+        "url": "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NSwicHVyIjoiYmxvYl9pZCJ9fQ==--d68ad858acf003c383853a3ba23bb061465ed481/Invoice%20-%20Invoice%20(2).csv"
+    },
+    {
+        "id": 4,
+        "created_at": "2024-11-22T23:22:47.954Z",
+        "updated_at": "2024-11-22T23:22:47.967Z",
+        "filename": "german.docx",
+        "extension": "docx",
+        "byte_size": 4243,
+        "key": "62yb5rkw6chnbdepp7h64jjjkl6e",
+        "url": "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MywicHVyIjoiYmxvYl9pZCJ9fQ==--348fabee2cb1b5e2fc72e03eb06970ba6228975a/german.docx"
+    }
+]

@@ -1,55 +1,52 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"log"
+	"github.com/tidwall/gjson"
 	"net/http"
 )
 
-func pollingOnce(entrypoint, updatedAt, limit string) ([]Document, error) {
-	req, err := http.NewRequest("GET", entrypoint, nil)
-	if err != nil {
-		return nil, err
+func Polling(entrypoint, updatedAt string, limit int) (gjson.Result, error) {
+	params := make(map[string]string)
+	if limit > 0 {
+		params["limit"] = fmt.Sprintf("%d", limit)
 	}
-	req.Header.Set("Accept", "application/json")
-
-	params := req.URL.Query()
 	if updatedAt != "" {
-		params.Add("updated_at", updatedAt)
-		log.Printf("Fetching documents since: %v", updatedAt)
-	} else {
-		log.Println("Update history not found, fetching all documents")
+		params["updated_at"] = updatedAt
 	}
-	if limit != "" {
-		params.Add("limit", limit)
-	}
-	req.URL.RawQuery = params.Encode()
-
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := HttpClient.R().
+		SetQueryParams(params).
+		SetHeader("Accept", "application/json").
+		Get(entrypoint)
 	if err != nil {
-		return nil, err
+		return gjson.Result{}, err
 	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("received HTTP %d", resp.StatusCode)
+	if resp.StatusCode() != http.StatusOK {
+		return gjson.Result{}, fmt.Errorf("HTTP %d\n%s", resp.StatusCode(), resp.String())
 	}
-
-	var docs []Document
-	if err := json.NewDecoder(resp.Body).Decode(&docs); err != nil {
-		return nil, err
-	}
-	return docs, nil
+	return gjson.Parse(resp.String()), nil
 }
 
-type Document struct {
-	ID            int    `json:"id"`
-	CreatedAt     string `json:"created_at"`
-	UpdatedAt     string `json:"updated_at"`
-	Filename      string `json:"filename"`
-	FileExtension string `json:"file_extension"`
-	ByteSize      int    `json:"byte_size"`
-	Key           string `json:"key"`
-	URL           string `json:"url"`
+func ChangelogList(entrypoint, cursor, docUpdatedAt string, limit int) (gjson.Result, error) {
+	params := map[string]string{}
+	if limit > 0 {
+		params["limit"] = fmt.Sprintf("%d", limit)
+	}
+	if cursor != "" {
+		params["cursor"] = cursor
+	} else if docUpdatedAt != "" {
+		params["doc_updated_at"] = docUpdatedAt
+	}
+	resp, err := HttpClient.R().
+		SetQueryParams(params).
+		SetHeader("Accept", "application/json").
+		Get(entrypoint)
+	if err != nil {
+		return gjson.Result{}, err
+	}
+	if resp.StatusCode() != http.StatusOK {
+		return gjson.Result{}, fmt.Errorf("HTTP %d\n%s", resp.StatusCode(), resp.String())
+	}
+
+	return gjson.Parse(resp.String()), nil
 }
