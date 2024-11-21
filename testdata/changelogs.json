@@ -1,0 +1,70 @@
+[
+  {
+    "content": {
+      "created_at": "2024-11-22T19:36:14.412Z",
+      "updated_at": "2024-11-22T19:36:14.417Z",
+      "url": "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--9c2300fd208bb27b30fd370e9b55b06d82d171d0/english.jpg",
+      "key": "z5b4ejox0ay2dvcw46mte6oy7q3y",
+      "filename": "english.jpg",
+      "extension": "jpg",
+      "byte_size": 45232
+    },
+    "status": "created",
+    "id": 2,
+    "cursor": 2
+  },
+  {
+    "content": {},
+    "status": "updated",
+    "id": 1,
+    "cursor": 3
+  },
+  {
+    "content": null,
+    "status": "deleted",
+    "id": 1,
+    "cursor": 4
+  },
+  {
+    "content": {
+      "created_at": "2024-11-22T23:22:47.835Z",
+      "updated_at": "2024-11-22T23:22:47.842Z",
+      "url": "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NSwicHVyIjoiYmxvYl9pZCJ9fQ==--d68ad858acf003c383853a3ba23bb061465ed481/Invoice%20-%20Invoice%20(2).csv",
+      "key": "ee17cjocidbmb97shi6bzyf7mhh4",
+      "filename": "Invoice - Invoice (2).csv",
+      "extension": "csv",
+      "byte_size": 562
+    },
+    "status": "created",
+    "id": 3,
+    "cursor": 5
+  },
+  {
+    "content": {
+      "created_at": "2024-11-22T23:22:47.954Z",
+      "updated_at": "2024-11-22T23:22:47.962Z",
+      "url": "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MywicHVyIjoiYmxvYl9pZCJ9fQ==--348fabee2cb1b5e2fc72e03eb06970ba6228975a/german.docx",
+      "key": "62yb5rkw6chnbdepp7h64jjjkl6e",
+      "filename": "german.docx",
+      "extension": "docx",
+      "byte_size": 4243
+    },
+    "status": "created",
+    "id": 4,
+    "cursor": 6
+  },
+  {
+    "content": {
+      "created_at": "2024-11-22T23:22:48.095Z",
+      "updated_at": "2024-11-22T23:22:48.108Z",
+      "url": "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NCwicHVyIjoiYmxvYl9pZCJ9fQ==--12c9d4fa5404552526d70c955e27a65c3e51e649/Invoice%20-%20Invoice.csv",
+      "key": "0rty5o0xnnt75mui4j2ovhq5s9xv",
+      "filename": "Invoice - Invoice.csv",
+      "extension": "csv",
+      "byte_size": 562
+    },
+    "status": "created",
+    "id": 5,
+    "cursor": 7
+  }
+]
