@@ -1,0 +1,36 @@
+services:
+  es-feeding:
+    container_name: es-feeding
+    build:
+      context: .
+      dockerfile: Dockerfile
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    network_mode: host
+    environment:
+      - ES_ENTRYPOINT=${ES_ENTRYPOINT}
+      - ES_INDEX=${ES_INDEX}
+      - POLLING_ENTRYPOINT=${POLLING_ENTRYPOINT}
+      - CHANGELOGS_ENTRYPOINT=${CHANGELOGS_ENTRYPOINT}
+      - BATCH_SIZE=${BATCH_SIZE}
+  elasticsearch:
+    image: elasticsearch:${ES_VERSION}
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+      - cluster.name=elasticsearch-rails
+      - cluster.routing.allocation.disk.threshold_enabled=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+volumes:
+  es-data:
+
+name: esFeeding
