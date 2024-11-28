@@ -38,7 +38,12 @@ func main() {
 	if cursorResult.Exists() {
 		cursor = cursorResult.String()
 	} else {
-		fmt.Printf("---Start full-sync for changes after: %s\n", updatedAtResult.String())
+		if updatedAtResult.Exists() {
+			updatedAt = updatedAtResult.String()
+			fmt.Printf("---Start full-sync for changes after: %s\n", updatedAtResult.String())
+		} else {
+			fmt.Printf("No cursor or updated_at found, start full-sync\n")
+		}
 		for {
 			documents, err := Polling(pollingEntrypoint, updatedAt, batchSize)
 			if err != nil {
@@ -55,13 +60,13 @@ func main() {
 				time.Sleep(waitTime)
 				continue
 			}
+			updatedAt = documents.Get("@reverse|0." + updatedAtField).String()
 			fmt.Printf("%d changes after %s are indexed\n", batchSize, updatedAt)
-			if len(failedList) > 0 {
-				log.Printf("%d changes failed to sync\n", len(failedList))
+			if len(failures) > 0 {
+				log.Printf("%d changes failed to sync\n", len(failures))
 				failedList = append(failedList, failures...)
 			}
 
-			updatedAt = documents.Get("@reverse|0." + updatedAtField).String()
 			meta := BuildMetadata(metadata, updatedAtField, updatedAt)
 			if err := setIndexMetadata(esEntrypoint, esIndex, meta); err != nil {
 				log.Printf("Failed to update_at document %v\n", err)
